@@ -2,9 +2,6 @@ package repositorios
 
 import `trait`.Repositorio
 import modelo.Pago
-import util.Conexion
-
-import java.sql.SQLException
 import scala.collection.mutable.ListBuffer
 
 class PagosRepositorio extends Repositorio[Pago] {
@@ -17,10 +14,7 @@ class PagosRepositorio extends Repositorio[Pago] {
         |VALUES (?, ?)
         |""".stripMargin
 
-    try {
-      val cn = Conexion.conectar()
-      val ps = cn.prepareStatement(SQL)
-
+    ejecutarActualizacion(SQL){ ps =>
       ps.setString(1, entidad.fecha.toString)
 
       ps.setBigDecimal(
@@ -28,14 +22,6 @@ class PagosRepositorio extends Repositorio[Pago] {
         entidad.monto.bigDecimal
       )
 
-      ps.executeUpdate()
-
-      ps.close()
-      cn.close()
-
-    } catch {
-      case e: SQLException =>
-        println(s"Error al guardar el pago: ${e.getMessage}")
     }
   }
 
@@ -71,20 +57,8 @@ class PagosRepositorio extends Repositorio[Pago] {
         |WHERE id = ?
         |""".stripMargin
 
-    try {
-      val cn = Conexion.conectar()
-      val ps = cn.prepareStatement(SQL)
-
+    ejecutarActualizacion(SQL){ ps =>
       ps.setInt(1, id)
-
-      ps.executeUpdate()
-
-      ps.close()
-      cn.close()
-
-    } catch {
-      case e: SQLException =>
-        println(s"Error al eliminar el pago: ${e.getMessage}")
     }
   }
 }
