@@ -2,10 +2,7 @@ package repositorios
 
 import `trait`.Repositorio
 import modelo.{Membresias, Socio}
-import util.Conexion
 import Enums.{EstadoSocio, TipoDocumento}
-
-import java.sql.SQLException
 import java.time.LocalDate
 import scala.collection.mutable.ListBuffer
 
@@ -25,50 +22,32 @@ class MembresiasRepositorio extends Repositorio[Membresias] {
         |VALUES (?, ?, ?, ?, ?)
         |""".stripMargin
 
-    try {
-
-      val cn = Conexion.conectar()
-      val ps = cn.prepareStatement(SQL)
-
+    ejecutarActualizacion(SQL){ ps =>
       entidad.socio.id match {
         case Some(id) =>
-          ps.setInt(1, entidad.socio.id.get)
-
+          
+          ps.setInt(1,id)
           ps.setString(2, entidad.fechaInicio.toString)
-
           ps.setString(3, entidad.fechaFin.toString)
-
           ps.setBigDecimal(
             4,
             entidad.precio.bigDecimal
           )
-
           ps.setString(
             5,
             entidad.estado.toString
           )
-
-          ps.executeUpdate()
-
-          ps.close()
-          cn.close()
         case None =>
           throw new IllegalArgumentException("El socio debe estar registrado antes de crear una membresia")
       }
-
-    } catch {
-      case e: SQLException =>
-        println(
-          s"Error al guardar la membresía: ${e.getMessage}"
-        )
     }
   }
-
-  def listar(): List[Membresias] = {
+  
+  override def listar(): List[Membresias] = {
 
     val SQL =
       """
-        |SELECT 
+        |SELECT
         |    m.id,
         |    m.idSocio,
         |    m.fechaInicio,
@@ -90,7 +69,7 @@ class MembresiasRepositorio extends Repositorio[Membresias] {
         |""".stripMargin
 
     ejecutarConsulta(SQL){rs =>
-      
+
       val membresias = ListBuffer.empty[Membresias]
 
       while (rs.next()) {
@@ -132,7 +111,7 @@ class MembresiasRepositorio extends Repositorio[Membresias] {
       }
       membresias.toList
     }
-    
+
   }
 
   override def eliminar(id: Int): Unit = {
@@ -143,23 +122,9 @@ class MembresiasRepositorio extends Repositorio[Membresias] {
         |WHERE id = ?
         |""".stripMargin
 
-    try {
-
-      val cn = Conexion.conectar()
-      val ps = cn.prepareStatement(SQL)
-
+    ejecutarActualizacion(SQL){ ps =>
       ps.setInt(1, id)
 
-      ps.executeUpdate()
-
-      ps.close()
-      cn.close()
-
-    } catch {
-      case e: SQLException =>
-        println(
-          s"Error al eliminar membresía: ${e.getMessage}"
-        )
     }
   }
 }
