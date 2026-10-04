@@ -7,7 +7,7 @@ import repositorios.{MembresiasRepositorio, SocioRepositorios}
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
-// Consultas sobre membresías.
+// Consultas sobre membresías.0
 class MembresiaServicio {
 
   // FILTER: membresías vigentes a la fecha indicada (por defecto, hoy)

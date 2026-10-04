@@ -4,7 +4,7 @@ import Enums.TipoDocumento
 import modelo.Socio
 import repositorios.SocioRepositorios
 
-// Consultas sobre socios.
+// Consultas sobre socios.0
 class SocioServicio {
 
   // FILTER: socios cuyo nombre, apellido o código contiene el texto buscado

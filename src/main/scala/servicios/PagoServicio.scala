@@ -5,7 +5,7 @@ import repositorios.PagosRepositorio
 
 import java.time.YearMonth
 
-// Consultas sobre pagos.
+// Consultas sobre pagos.0
 class PagoServicio {
 
   // FILTER: pagos realizados en un año y mes determinados
@@ -13,6 +13,7 @@ class PagoServicio {
     PagosRepositorio().listar().filter(p =>
       p.fecha.getYear == anio && p.fecha.getMonthValue == mes
     )
+
   // FILTER: pagos cuyo monto supera un valor
   def mayoresA(monto: BigDecimal): List[Pago] =
     PagosRepositorio().listar().filter(_.monto > monto)
@@ -26,6 +27,7 @@ class PagoServicio {
     val montos = PagosRepositorio().listar().map(_.monto)
     if (montos.isEmpty) BigDecimal(0) else montos.sum / BigDecimal(montos.size)
   }
+
   // MAXBYOPTION: el pago de mayor monto
   def mayorPago(): Option[Pago] =
     PagosRepositorio().listar().maxByOption(_.monto)
