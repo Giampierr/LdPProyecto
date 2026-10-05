@@ -1,14 +1,14 @@
 package repositorios
 
 import `trait`.Repositorio
-import modelo.{Membresias, Socio}
+import modelo.{Membresia, Socio}
 import Enums.{EstadoSocio, TipoDocumento}
 import java.time.LocalDate
 import scala.collection.mutable.ListBuffer
 
-class MembresiasRepositorio extends Repositorio[Membresias] {
+class MembresiasRepositorio extends Repositorio[Membresia] {
 
-  override def guardar(entidad: Membresias): Unit = {
+  override def guardar(entidad: Membresia): Unit = {
 
     val SQL =
       """
@@ -43,7 +43,7 @@ class MembresiasRepositorio extends Repositorio[Membresias] {
     }
   }
   
-  override def listar(): List[Membresias] = {
+  override def listar(): List[Membresia] = {
 
     val SQL =
       """
@@ -70,7 +70,7 @@ class MembresiasRepositorio extends Repositorio[Membresias] {
 
     ejecutarConsulta(SQL){rs =>
 
-      val membresias = ListBuffer.empty[Membresias]
+      val membresias = ListBuffer.empty[Membresia]
 
       while (rs.next()) {
 
@@ -90,7 +90,7 @@ class MembresiasRepositorio extends Repositorio[Membresias] {
           )
         )
 
-        val membresia = Membresias(
+        val membresia = Membresia(
           id = Some(rs.getInt("id")),
           socio = socio,
           fechaInicio = LocalDate.parse(
