@@ -6,7 +6,7 @@ import scala.math.BigDecimal
 
 import Enums.EstadoSocio
 
-case class Membresias(
+case class Membresia(
                       id: Option[Int],
                       socio: Socio,
                       fechaInicio: LocalDate,
@@ -31,7 +31,7 @@ case class Membresias(
   )
 }
 
-object Membresias {
+object Membresia {
 
   def nueva(
              socio: Socio,
@@ -39,8 +39,8 @@ object Membresias {
              fechaFin: LocalDate,
              precio: BigDecimal,
              estado: EstadoSocio
-           ): Membresias =
-    Membresias(
+           ): Membresia =
+    Membresia(
       None,
       socio,
       fechaInicio,
