@@ -23,6 +23,11 @@ case class Socio(
   require(Validador.validarTelefono(telefono),"Telefono inválido")
   require(Validador.validarCorreo(email),"Correo inválido")
   require(!fechaRegistro.isAfter(LocalDate.now()),"La fecha no puede ser futura")
+
+  def mostrar(): Unit = {
+    val nombreCompleto = s"$nombre $apellido"
+    println(f"ID: ${id.getOrElse(0)}%-3d | Código: $codigo%-8s | Socio: $nombreCompleto%-30s | Documento: $tipoDocumento%-20s | Nro: $nroDocumento%-15s | Teléfono: $telefono%-9s | Correo: $email%-30s | Registro: $fechaRegistro")
+  }
 }
 object Socio {
   def nueva(

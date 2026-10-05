@@ -1,6 +1,7 @@
 package Enums
 
 enum EstadoSocio {
-  case Activo
-  case Inactivo
+  case ACTIVA
+  case VENCIDA
+  case CANCELADA
 }

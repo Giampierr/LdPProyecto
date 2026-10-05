@@ -15,6 +15,11 @@ lazy val root = rootProject
       
       // JavaFX
       "org.openjfx" % "javafx-controls" % "21.0.8",
-      "org.openjfx" % "javafx-fxml" % "21.0.8"
+      "org.openjfx" % "javafx-fxml" % "21.0.8",
+      //Prolog
+      "jpl" % "jpl" % "7.4.0",
+      Compile / unmanagedJars += Attributed.blank(
+        file("C:/Program Files/swipl/lib/jpl.jar")
+      )
     )
   )

@@ -2,7 +2,8 @@ package repositorios
 
 import `trait`.Repositorio
 import modelo.{Membresia, Socio}
-import Enums.{EstadoSocio, TipoDocumento}
+import Enums.{EstadoSocio, TipoDocumento, TipoMembresia}
+
 import java.time.LocalDate
 import scala.collection.mutable.ListBuffer
 
@@ -12,7 +13,7 @@ class MembresiasRepositorio extends Repositorio[Membresia] {
 
     val SQL =
       """
-        |INSERT INTO membresias(
+        |INSERT INTO MEMBRESIAS(
         |idSocio,
         |fechaInicio,
         |fechaFin,
@@ -64,7 +65,7 @@ class MembresiasRepositorio extends Repositorio[Membresia] {
         |    s.email,
         |    s.fechaRegistro
         |
-        |FROM membresias m
+        |FROM MEMBRESIAS m
         |INNER JOIN socios s ON m.idSocio = s.id
         |""".stripMargin
 
@@ -118,7 +119,7 @@ class MembresiasRepositorio extends Repositorio[Membresia] {
 
     val SQL =
       """
-        |DELETE FROM membresias
+        |DELETE FROM MEMBRESIAS
         |WHERE id = ?
         |""".stripMargin
 

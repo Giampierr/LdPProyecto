@@ -12,7 +12,7 @@ class SocioRepositorios extends Repositorio[Socio] {
 
     val SQL =
       """
-        |INSERT INTO socios(
+        |INSERT INTO SOCIOS(
         |codigo,
         |nombre,
         |apellido,
@@ -39,7 +39,7 @@ class SocioRepositorios extends Repositorio[Socio] {
 
   override def listar(): List[Socio] = {
 
-    val SQL = "SELECT * FROM socios"
+    val SQL = "SELECT * FROM SOCIOS"
 
     ejecutarConsulta(SQL) { rs =>
 
@@ -75,7 +75,7 @@ class SocioRepositorios extends Repositorio[Socio] {
 
     val SQL =
       """
-        |DELETE FROM socios
+        |DELETE FROM SOCIOS
         |WHERE id = ?
         |""".stripMargin
 
@@ -89,7 +89,7 @@ class SocioRepositorios extends Repositorio[Socio] {
     val SQL =
       """
         |SELECT *
-        |FROM socios
+        |FROM SOCIOS
         |WHERE id = ?
         |""".stripMargin
 

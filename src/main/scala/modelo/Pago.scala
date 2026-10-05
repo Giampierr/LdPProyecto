@@ -17,6 +17,12 @@ case class Pago(
     monto > 0,
     "El monto debe ser mayor a 0"
   )
+
+  def mostrar(): Unit = {
+    println(
+      f"ID: ${id.getOrElse(0)}%-3d | Fecha: ${fecha.toLocalDate} ${fecha.toLocalTime.toString.take(8)}%-17s | Monto: S/ ${monto}%.2f"
+    )
+  }
 }
 
 object Pago {

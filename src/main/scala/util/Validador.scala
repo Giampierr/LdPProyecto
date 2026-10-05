@@ -5,8 +5,8 @@ import Enums.TipoDocumento.{CarnetExtranjeria, Dni}
 
 object Validador {
 
-  def validarCarnetExtranjeria(carnet : String) : Boolean =
-    carnet.matches("\\d{9}")
+  def validarCarnetExtranjeria(carnet: String): Boolean =
+    carnet.matches("[A-Za-z0-9]{9,15}")
 
   def validarDni(dni : String) : Boolean =
     dni.matches("\\d{8}")

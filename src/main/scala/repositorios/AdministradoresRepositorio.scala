@@ -10,7 +10,7 @@ class AdministradoresRepositorio extends Repositorio[Administracion] {
 
     val SQL =
       """
-        |INSERT INTO Administracion(usuario,password,nombre,estado) VALUES (?,?,?,?)
+        |INSERT INTO ADMINISTRACION(usuario,password,nombre,estado) VALUES (?,?,?,?)
         |""".stripMargin
 
 
@@ -23,7 +23,7 @@ class AdministradoresRepositorio extends Repositorio[Administracion] {
   }
   override def listar(): List[Administracion] = {
 
-    val SQL = "SELECT * FROM administracion"
+    val SQL = "SELECT * FROM ADMINISTRACION"
 
     ejecutarConsulta(SQL) { rs =>
       val administradores = ListBuffer.empty[Administracion]
@@ -48,7 +48,7 @@ class AdministradoresRepositorio extends Repositorio[Administracion] {
 
     val SQL =
       """
-        |DELETE FROM Administracion
+        |DELETE FROM ADMINISTRACION
         |WHERE id = ?
         |""".stripMargin
 

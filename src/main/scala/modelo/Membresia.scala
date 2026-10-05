@@ -1,10 +1,8 @@
 package modelo
 
 import java.time.LocalDate
-
 import scala.math.BigDecimal
-
-import Enums.EstadoSocio
+import Enums.{EstadoSocio, TipoMembresia}
 
 case class Membresia(
                       id: Option[Int],
@@ -29,6 +27,12 @@ case class Membresia(
     precio > 0,
     "El precio debe ser mayor a 0"
   )
+
+  def mostrar(): Unit = {
+    println(
+      f"ID: ${id.getOrElse(0)}%-3d | Socio: ${socio.nombre} ${socio.apellido}%-20s | Código: ${socio.codigo}%-8s | Inicio: $fechaInicio | Fin: $fechaFin | Precio: S/ ${precio}%-8s | Estado: $estado"
+    )
+  }
 }
 
 object Membresia {
@@ -49,3 +53,6 @@ object Membresia {
       estado
     )
 }
+
+
+

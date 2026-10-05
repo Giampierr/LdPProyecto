@@ -1,6 +1,6 @@
 package Enums
 
 enum EstadoAdministracion {
-  case Activo
-  case Inactivo
+  case ACTIVO
+  case INACTIVO
 }
